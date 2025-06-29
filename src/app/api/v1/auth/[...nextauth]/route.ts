@@ -1,6 +1,8 @@
 import NextAuth, { AuthOptions } from "next-auth"
 import AuthentikProvider from "next-auth/providers/authentik";
 
+import { prisma } from "@/lib/prisma-client";
+
 export const authOptions: AuthOptions = {
   providers: [
     AuthentikProvider({
@@ -11,6 +13,29 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async jwt({ token, account, profile }) {
+      if (profile?.sub) {
+        // Check if the user exists in the database
+            
+        const user = await prisma.user.findFirst({
+          where: {
+            uuid: profile?.sub
+          }
+        });
+
+        if (!user) {
+          // Create a new user if they don't exist
+          await prisma.user.create({
+            data: {
+              uuid: profile?.sub,
+              name: profile?.name,
+              email: profile?.email
+            }
+          });
+
+          console.log(`User created (sub: ${profile?.sub})`);
+        }
+      }
+
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
         token.accessToken = account.access_token
