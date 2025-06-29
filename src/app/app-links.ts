@@ -2,6 +2,7 @@
 
 import { DrawerConfig } from "@/components/layouts/drawer";
 import { LayoutDashboard, LogOut, User, CalendarDays, Wallet2, CreditCard, Settings } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 export const AppLinks: DrawerConfig = {
   links: [
@@ -16,14 +17,14 @@ export const AppLinks: DrawerConfig = {
       href: '/cycles'
     },
     {
-      icon: Wallet2,
-      label: 'Receipts',
-      href: '/receipts'
-    },
-    {
       icon: CreditCard,
       label: 'Categories',
       href: '/categories'
+    },
+    {
+      icon: Wallet2,
+      label: 'Receipts',
+      href: '/receipts'
     },
     {
       icon: Settings,
@@ -40,7 +41,13 @@ export const AppLinks: DrawerConfig = {
     {
       icon: LogOut,
       label: 'Logout',
-      href: '/logout'
+      href: '',
+      onClick: () => {
+        signOut({
+          callbackUrl: '/',
+          redirect: true
+        });
+      }
     }
   ]
 }
