@@ -1,6 +1,6 @@
 'use client';
 
-import { DrawerConfig } from "@/components/layouts/drawer";
+import { DrawerConfig } from "@/components/containers/drawer";
 import { LayoutDashboard, LogOut, User, CalendarDays, Wallet2, CreditCard, Settings } from "lucide-react";
 import { signOut } from "next-auth/react";
 

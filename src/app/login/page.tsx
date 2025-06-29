@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import SingleActionLayout from "@/components/layouts/single-action";
+import SingleActionLayout from "@/components/containers/single-action";
 import Link from 'next/link';
 import { useSession, signIn } from 'next-auth/react';
 import { useEffect } from 'react';
@@ -58,7 +58,6 @@ export default function LoginPage() {
           {/* Authentik Login Button */}
           <button
             onClick={handleAuthentikLogin}
-            disabled={status === 'loading'}
             className="w-full rounded-full border bg-illuminating-emerald-500 text-white font-bold py-3 px-6 hover:bg-illuminating-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Login with Authentik

@@ -82,6 +82,20 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@layer base {
+  button {
+    @apply rounded-full font-bold py-3 px-6 disabled:opacity-50 disabled:cursor-not-allowed transition-colors
+  }
+
+  .form-field {
+    @apply flex flex-col gap-2 mb-4;
+  }
+
+  .form-input {
+    @apply border border-gray-300 rounded p-2;
+  }
+}
+
 @layer component {
 
   .theme--gradient {
