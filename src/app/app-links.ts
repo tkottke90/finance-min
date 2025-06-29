@@ -34,8 +34,8 @@ export const AppLinks: DrawerConfig = {
   userLinks: [
     {
       icon: User,
-      label: 'Profile',
-      href: '/profile'
+      label: 'Account',
+      href: '/account'
     },
     {
       icon: LogOut,
