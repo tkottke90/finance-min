@@ -30,6 +30,6 @@ export function NavigationLink({ label, icon: Icon, href, active, onClick }: Rea
 
   return (<Link className={`${baseClasses} ${activeClasses}`} href={href} onClick={onClick}>
     <Icon className="w-8 h-8 md:w-5 md:h-5" />
-    <span className="hidden md:inline">{label}</span>
+    <span className="hidden md:inline font-bold">{label}</span>
   </Link>);
 }
