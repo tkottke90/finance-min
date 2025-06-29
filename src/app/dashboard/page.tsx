@@ -1,9 +1,11 @@
 'use client';
 
+import DrawerLayout from '@/components/layouts/drawer';
 import { useSession, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { AppLinks } from '../app-links';
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -41,7 +43,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <DrawerLayout className="min-h-screen bg-gray-50 py-8" links={AppLinks}>
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
@@ -54,7 +56,7 @@ export default function DashboardPage() {
           </div>
 
           {session?.user && (
-            <div className="mb-6">
+            <div className="mb-6 overflow-clip">
               <h3 className="text-lg font-semibold text-gray-800 mb-3">User Information</h3>
               <div className="bg-gray-50 rounded-lg p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -108,6 +110,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </div>
+    </DrawerLayout>
   );
 }
