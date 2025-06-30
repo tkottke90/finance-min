@@ -13,9 +13,6 @@ export const authOptions: AuthOptions = {
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      return true;
-    },
     async jwt({ token, account, profile }) {
       if (profile?.sub) {
         // Check if the user exists in the database
