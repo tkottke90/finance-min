@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import DevOnly from "@/components/containers/dev-only";
+import { AccountPageStyles } from "./account.styles";
 
 interface User {
   id: number;
@@ -98,7 +99,7 @@ export default function AccountForm({ initialUser }: AccountFormProps) {
   };
 
   return (
-    <div className="card text-zinc-800 dark:text-white max-w-3xl">
+    <div className={AccountPageStyles}>
       <h1 className="text-3xl font-bold mb-6">Account</h1>
 
       {/* Error Message */}

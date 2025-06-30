@@ -1,8 +1,9 @@
 import { LoadingSkeleton } from "@/components/loading-skeleton";
+import { AccountPageStyles } from "./account.styles";
 
 export function AccountPageSkeleton() {
   return (
-    <div className="card text-zinc-800 dark:text-white">
+    <div className={AccountPageStyles}>
       <div className="mb-6">
         <LoadingSkeleton className="h-9 w-32 mb-2" /> {/* Title */}
       </div>

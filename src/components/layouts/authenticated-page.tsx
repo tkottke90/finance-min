@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/v1/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
-import DrawerLayout from "@/components/containers/drawer";
+import DrawerLayout from "@/components/containers/drawer-layout";
 import { AppLinks } from "@/app/(authenticated)/app-links";
 
 interface AuthenticatedPageProps {

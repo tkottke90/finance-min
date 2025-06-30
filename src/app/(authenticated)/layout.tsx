@@ -1,4 +1,4 @@
-import DrawerLayout from "@/components/containers/drawer";
+import DrawerLayout from "@/components/containers/drawer-layout";
 import { AppLinks } from "./app-links";
 
 export default function AuthenticatedLayout({

@@ -1,0 +1,1 @@
+export const AccountPageStyles = "card text-zinc-800 dark:text-white max-w-3xl";
