@@ -105,4 +105,8 @@ body {
     color: white;
   }
 
+  .card {
+    @apply w-full h-fit rounded-lg shadow-md p-4 bg-white dark:bg-zinc-800;
+  }
+
 }
