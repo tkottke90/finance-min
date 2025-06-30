@@ -14,6 +14,14 @@ export async function GET() {
           provider: 'Authentik',
           note: 'Handles all OAuth2 flow automatically'
         }
+      },
+      users: {
+        profile: {
+          path: '/api/v1/users/[uuid]',
+          methods: ['GET', 'PUT'],
+          description: 'User profile management endpoints',
+          note: 'Authenticated users can only access their own profile data'
+        }
       }
     },
     clientUsage: {

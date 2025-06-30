@@ -1,3 +1,5 @@
+'use client';
+
 import { CustomComponentProps } from "@/lib/components";
 import { LucideIcon } from "lucide-react";
 import { NavigationLink } from "../navigation-link";
