@@ -98,7 +98,7 @@ export default function AccountForm({ initialUser }: AccountFormProps) {
   };
 
   return (
-    <div className="card text-zinc-800 dark:text-white">
+    <div className="card text-zinc-800 dark:text-white max-w-3xl">
       <h1 className="text-3xl font-bold mb-6">Account</h1>
 
       {/* Error Message */}
@@ -127,6 +127,7 @@ export default function AccountForm({ initialUser }: AccountFormProps) {
             onChange={handleInputChange}
             disabled={saving}
             required
+            autoComplete="off"
           />
         </div>
         
@@ -141,6 +142,7 @@ export default function AccountForm({ initialUser }: AccountFormProps) {
             onChange={handleInputChange}
             disabled={saving}
             required
+            autoComplete="off"
           />
         </div>
 

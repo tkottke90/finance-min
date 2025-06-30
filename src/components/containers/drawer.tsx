@@ -24,7 +24,7 @@ export default function DrawerLayout({ children, links }: CustomComponentProps<{
   return (
     <div className="h-full w-full grid grid-cols-[64px_1fr] md:grid-cols-[200px_1fr]">
       <aside className="h-full flex flex-col gap-4 bg-illuminating-emerald-100 dark:bg-zinc-600 text-zinc-900 dark:text-white">
-        <h3 className="text-center text-4xl p-2 font-bold">FM</h3>
+        <h3 className="text-center text-3xl md:text-4xl p-2 font-bold">FM</h3>
         <div className="flex-grow">
           {links?.links?.map(createNavigationLink)}
         </div>
@@ -32,7 +32,7 @@ export default function DrawerLayout({ children, links }: CustomComponentProps<{
           {links?.userLinks?.map(createNavigationLink)}
         </div>
       </aside>
-      <div className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 shadow-2xl">{children}</div>
+      <div className="w-full h-full p-4 bg-zinc-100 dark:bg-zinc-900 shadow-2xl flex justify-center">{children}</div>
     </div>
   );
 }
