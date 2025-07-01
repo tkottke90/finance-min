@@ -1,7 +1,7 @@
 'use client';
 
 import { DrawerConfig } from "@/components/containers/drawer-layout";
-import { LayoutDashboard, LogOut, User, CalendarDays, Wallet2, CreditCard, Settings } from "lucide-react";
+import { LayoutDashboard, LogOut, User, CalendarDays, Wallet2, CreditCard, Settings, Shapes } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 export const AppLinks: DrawerConfig = {
@@ -17,7 +17,7 @@ export const AppLinks: DrawerConfig = {
       href: '/cycles'
     },
     {
-      icon: CreditCard,
+      icon: Shapes,
       label: 'Categories',
       href: '/categories'
     },
@@ -27,9 +27,9 @@ export const AppLinks: DrawerConfig = {
       href: '/receipts'
     },
     {
-      icon: Settings,
-      label: 'Accounts',
-      href: '/accounts'
+      icon: CreditCard,
+      label: 'Payment Methods',
+      href: '/payment-methods'
     }
   ],
   userLinks: [
