@@ -129,4 +129,59 @@ body {
     color: var(--color-foreground);
   }
 
+  .toggle-button {
+    border-width: 4px;
+    border-style: solid;
+    border-radius: 0.5rem;
+  
+    font-size: 1.25rem;
+    font-weight: bold;
+
+    background-color: var(--background);
+    border-color: var(--foreground);
+    color: var(--foreground);
+  }
+  
+  .cycle-btn {
+    @extend .toggle-button;
+  
+    --foreground: var(--color-illuminating-emerald-800);
+    --background: var(--color-illuminating-emerald-100);
+
+    @variant dark {
+      --background: var(--color-illuminating-emerald-100);
+      --foreground: var(--color-illuminating-emerald-600);
+    }
+
+    &:hover {
+      --background: var(--color-illuminating-emerald-300);
+
+      @variant dark {
+        --background: var(--color-illuminating-emerald-200);
+      }
+    }
+
+  }
+  
+  .bills-btn {
+    @extend .toggle-button;
+  
+    --foreground: var(--color-slate-600);
+    --background: var(--color-slate-100);
+
+    &:hover {
+      --background: var(--color-slate-300);
+    }
+  }
+  
+  input[type="checkbox"]:checked + .cycle-btn {
+    background-color: var(--foreground);
+    color: white;
+  }
+  
+  input[type="checkbox"]:checked + .bills-btn {
+    background-color: var(--foreground);
+    color: white;
+  }
+
 }
