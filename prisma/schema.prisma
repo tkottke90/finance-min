@@ -19,4 +19,108 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  cycles Cycle[]
+  categories Category[]
+  transactions Transaction[]
+  paymentMethods PaymentMethod[]
+  receipts Receipt[]
 }
+
+model Cycle {
+  id    Int     @id @default(autoincrement())
+  name  String
+  startDate DateTime
+  endDate DateTime?
+  notes String @default("")
+  userId String
+
+  // Derived fields - Years are broken up into "cycles" to encourage the user
+  // to focus on the money they are currently managing.  We track these cycles
+  // by a combination of Year and Year Index.  Importantly, cycles do not dictate
+  // what the length of one cycle is or if the user uses the same cycle length
+  // for each cycle.
+  year Int?
+  yearIndex Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [uuid])
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  description String
+  color String?
+  balance Decimal @default(0)
+  userId String
+
+  isOverflow Boolean @default(false)
+  isSubscription Boolean @default(false)
+  willOverflow Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [uuid])
+  transactions Transaction[]
+}
+
+model Transaction {
+  id    Int     @id @default(autoincrement())
+  amount Decimal
+  date  DateTime
+  categoryId Int
+  receiptId Int
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [uuid])
+  receipt Receipt @relation(fields: [receiptId], references: [id])
+  category Category @relation(fields: [categoryId], references: [id])
+}
+
+model PaymentMethod {
+  id    Int     @id @default(autoincrement())
+  name  String
+  color String?
+  payment_url String?
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [uuid])
+  receipts Receipt[]
+}
+
+model Receipt {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  date  DateTime
+  paymentMethodId Int
+  userId String
+  notes String @default("")
+
+  // Derived fields
+  total Decimal @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [uuid])
+  transactions Transaction[]
+  paymentMethod PaymentMethod @relation(fields: [paymentMethodId], references: [id])
+}
+
+
