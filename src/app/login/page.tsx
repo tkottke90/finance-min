@@ -1,16 +1,15 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import SingleActionLayout from "@/components/containers/single-action";
 import Link from 'next/link';
 import { useSession, signIn } from 'next-auth/react';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { LoginError } from './login-error';
 
 export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const error = searchParams.get('error');
 
   // Redirect to dashboard if already authenticated
   useEffect(() => {
@@ -47,12 +46,9 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
 
-        {/* Display errors */}
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-            <p>Authentication Error: {decodeURIComponent(error)}</p>
-          </div>
-        )}
+        <Suspense>
+          <LoginError />
+        </Suspense>
 
         <div className="space-y-4">
           {/* Authentik Login Button */}
