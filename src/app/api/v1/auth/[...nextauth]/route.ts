@@ -1,15 +1,15 @@
-import NextAuth, { AuthOptions } from "next-auth"
+import NextAuth, { AuthOptions } from "next-auth";
 import AuthentikProvider from "next-auth/providers/authentik";
 
 import { prisma } from "@/lib/prisma-client";
-import { formatDuration } from "@/lib/date-utils";
+import { formatDuration } from "@/lib/utils/date-utils";
 
 export const authOptions: AuthOptions = {
   providers: [
     AuthentikProvider({
       clientId: process.env.AUTHENTIK_ID!,
       clientSecret: process.env.AUTHENTIK_SECRET!,
-      issuer: process.env.AUTHENTIK_ISSUER!
+      issuer: process.env.AUTHENTIK_ISSUER!,
     }),
   ],
   callbacks: {
@@ -18,8 +18,8 @@ export const authOptions: AuthOptions = {
         // Check if the user exists in the database
         const user = await prisma.user.findFirst({
           where: {
-            uuid: profile?.sub
-          }
+            uuid: profile?.sub,
+          },
         });
 
         if (!user) {
@@ -28,31 +28,29 @@ export const authOptions: AuthOptions = {
             data: {
               uuid: profile?.sub,
               name: profile?.name,
-              email: profile?.email
-            }
+              email: profile?.email,
+            },
           });
 
           console.log(`User created (sub: ${profile?.sub})`);
         }
-      } else {
-
       }
 
       // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
-        token.accessToken = account.access_token
-        token.id = profile?.sub
+        token.accessToken = account.access_token;
+        token.id = profile?.sub;
         token.createdAt = new Date().toISOString();
       }
-      return token
+      return token;
     },
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
       if (token.accessToken) {
-        session.accessToken = token.accessToken as string
+        session.accessToken = token.accessToken as string;
       }
       if (token.id && session.user) {
-        session.user.id = token.id as string
+        session.user.id = token.id as string;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (session.user as any).memberSince = new Date().toISOString() as string;
       }
@@ -60,8 +58,8 @@ export const authOptions: AuthOptions = {
       if (token.sub) {
         const user = await prisma.user.findFirst({
           where: {
-            uuid: token.sub
-          }
+            uuid: token.sub,
+          },
         });
 
         if (user) {
@@ -71,32 +69,37 @@ export const authOptions: AuthOptions = {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (session.user as any).memberSince = user.createdAt.toISOString();
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (session as any).remainingTime = formatDuration(new Date(session.expires).valueOf() - new Date().valueOf());
+          (session as any).remainingTime = formatDuration(
+            new Date(session.expires).valueOf() - new Date().valueOf(),
+          );
         }
       }
 
-      return session
+      return session;
     },
   },
   pages: {
-    signIn: '/login',
-    error: '/login', // Error code passed in query string as ?error=
+    signIn: "/login",
+    error: "/login", // Error code passed in query string as ?error=
   },
   session: {
-    strategy: 'jwt',
+    strategy: "jwt",
   },
   cookies: {
     sessionToken: {
-      name: process.env.NODE_ENV === 'production' ? '__Secure-next-auth.session-token' : 'next-auth.session-token',
+      name:
+        process.env.NODE_ENV === "production"
+          ? "__Secure-next-auth.session-token"
+          : "next-auth.session-token",
       options: {
         httpOnly: true,
-        sameSite: 'lax',
-        path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
       },
     },
   },
-}
+};
 
 const handler = NextAuth(authOptions);
 
