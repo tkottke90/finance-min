@@ -3,198 +3,216 @@
 @use "tailwindcss";
 
 :root {
-  --background-lightness: 90%;
-  --elevated-modifier: 3%;
+    --background-lightness: 90%;
+    --elevated-modifier: 3%;
 
-  --background: hsl(0, 0%, var(--background-lightness));
-  --foreground: hsl(0, 0%, 9%);
+    --background: hsl(0, 0%, var(--background-lightness));
+    --foreground: hsl(0, 0%, 9%);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background-lightness: 9%;
-    --elevated-modifier: 10%;
-    --foreground: #ededed;
-  }
+    :root {
+        --background-lightness: 9%;
+        --elevated-modifier: 10%;
+        --foreground: #ededed;
+    }
 }
 
 @theme inline {
-  --color-background: hsl(0, 0%, var(--background-lightness));
-  --color-elevated-1: hsl(0, 0%, calc(var(--background-lightness) + 1 * var(--elevated-modifier)));
-  --color-elevated-2: hsl(0, 0%, calc(var(--background-lightness) + 2 * var(--elevated-modifier)));
-  --color-elevated-3: hsl(0, 0%, calc(var(--background-lightness) + 3 * var(--elevated-modifier)));
+    --color-background: hsl(0, 0%, var(--background-lightness));
+    --color-elevated-1: hsl(
+        0,
+        0%,
+        calc(var(--background-lightness) + 1 * var(--elevated-modifier))
+    );
+    --color-elevated-2: hsl(
+        0,
+        0%,
+        calc(var(--background-lightness) + 2 * var(--elevated-modifier))
+    );
+    --color-elevated-3: hsl(
+        0,
+        0%,
+        calc(var(--background-lightness) + 3 * var(--elevated-modifier))
+    );
 
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 
-  /* Illuminating Emerald */
-  --color-illuminating-emerald-50: hsl(140, 44%, 95%);
-  --color-illuminating-emerald-100: hsl(140, 44%, 90%);
-  --color-illuminating-emerald-200: hsl(140, 44%, 80%);
-  --color-illuminating-emerald-300: hsl(140, 44%, 67%);
-  --color-illuminating-emerald-400: hsl(140, 44%, 54%);
-  --color-illuminating-emerald-500: hsl(140, 56%, 40%);
-  --color-illuminating-emerald-600: hsl(140, 62%, 31%);
-  --color-illuminating-emerald-700: hsl(140, 59%, 25%);
-  --color-illuminating-emerald-800: hsl(140, 55%, 20%);
-  --color-illuminating-emerald-900: hsl(140, 56%, 17%);
-  --color-illuminating-emerald-950: hsl(140, 80%, 10%);
+    /* Illuminating Emerald */
+    --color-illuminating-emerald-50: hsl(140, 44%, 95%);
+    --color-illuminating-emerald-100: hsl(140, 44%, 90%);
+    --color-illuminating-emerald-200: hsl(140, 44%, 80%);
+    --color-illuminating-emerald-300: hsl(140, 44%, 67%);
+    --color-illuminating-emerald-400: hsl(140, 44%, 54%);
+    --color-illuminating-emerald-500: hsl(140, 56%, 40%);
+    --color-illuminating-emerald-600: hsl(140, 62%, 31%);
+    --color-illuminating-emerald-700: hsl(140, 59%, 25%);
+    --color-illuminating-emerald-800: hsl(140, 55%, 20%);
+    --color-illuminating-emerald-900: hsl(140, 56%, 17%);
+    --color-illuminating-emerald-950: hsl(140, 80%, 10%);
 
-  /* Chambray */
-  --color-chambray-50: hsl(218, 50%, 97%);
-  --color-chambray-100: hsl(218, 50%, 92%);
-  --color-chambray-200: hsl(218, 50%, 86%);
-  --color-chambray-300: hsl(218, 50%, 78%);
-  --color-chambray-400: hsl(218, 50%, 68%);
-  --color-chambray-500: hsl(218, 50%, 59%);
-  --color-chambray-600: hsl(218, 50%, 53%);
-  --color-chambray-700: hsl(218, 42%, 45%);
-  --color-chambray-800: hsl(218, 42%, 41%);
-  --color-chambray-900: hsl(218, 42%, 33%);
-  --color-chambray-950: hsl(218, 42%, 21%);
-  --color-chambray-dark-bg: hsl(218, 42%, 5%);
+    /* Chambray */
+    --color-chambray-50: hsl(218, 50%, 97%);
+    --color-chambray-100: hsl(218, 50%, 92%);
+    --color-chambray-200: hsl(218, 50%, 86%);
+    --color-chambray-300: hsl(218, 50%, 78%);
+    --color-chambray-400: hsl(218, 50%, 68%);
+    --color-chambray-500: hsl(218, 50%, 59%);
+    --color-chambray-600: hsl(218, 50%, 53%);
+    --color-chambray-700: hsl(218, 42%, 45%);
+    --color-chambray-800: hsl(218, 42%, 41%);
+    --color-chambray-900: hsl(218, 42%, 33%);
+    --color-chambray-950: hsl(218, 42%, 21%);
+    --color-chambray-dark-bg: hsl(218, 42%, 5%);
 
-  /* Straw */
-  --color-straw-50: #fcfaee;
-  --color-straw-100: #f7f2ce;
-  --color-straw-200: #eee299;
-  --color-straw-300: #e6d16b;
-  --color-straw-400: #dfbc40;
-  --color-straw-500: #d6a12a;
-  --color-straw-600: #bd7f22;
-  --color-straw-700: #9d5e20;
-  --color-straw-800: #814a1f;
-  --color-straw-900: #6a3e1d;
-  --color-straw-950: #3c200c;
+    /* Straw */
+    --color-straw-50: #fcfaee;
+    --color-straw-100: #f7f2ce;
+    --color-straw-200: #eee299;
+    --color-straw-300: #e6d16b;
+    --color-straw-400: #dfbc40;
+    --color-straw-500: #d6a12a;
+    --color-straw-600: #bd7f22;
+    --color-straw-700: #9d5e20;
+    --color-straw-800: #814a1f;
+    --color-straw-900: #6a3e1d;
+    --color-straw-950: #3c200c;
 
-  /* Warning */
-  --theme_warning_hue: 0;
-  --theme_warning_sat: 64%;
-  --theme_warning_light: 41%;
-  --theme_warning_hsl: hsl(0, 64%, 41%);
-  --color-warning-500: #ab2626;
+    /* Warning */
+    --theme_warning_hue: 0;
+    --theme_warning_sat: 64%;
+    --theme_warning_light: 41%;
+    --theme_warning_hsl: hsl(0, 64%, 41%);
+    --color-warning-500: #ab2626;
 }
 
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
-
 
 @layer base {
-  body {
-    height: 100dvh;
-  
-    font-family: Arial, Helvetica, sans-serif;
-  }
+    body {
+        height: 100dvh;
 
-  button {
-    @apply rounded-full font-bold py-3 px-6 disabled:opacity-50 disabled:cursor-not-allowed transition-colors
-  }
+        font-family: Arial, Helvetica, sans-serif;
 
-  .form-field {
-    @apply flex flex-col gap-2 mb-4;
-  }
+        background: var(--background);
+        color: var(--foreground);
+    }
 
-  .form-input {
-    @apply border border-gray-300 rounded p-2;
-  }
+    button {
+        @apply rounded-full font-bold py-3 px-6 disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+    }
+
+    .form-field {
+        @apply flex flex-col gap-2 mb-4;
+    }
+
+    .form-input {
+        @apply border border-gray-300 rounded p-2;
+    }
 }
 
 @layer component {
+    .theme--gradient {
+        background: HSL(140, 59%, 25%);
+        background: linear-gradient(
+            205deg,
+            rgba(26, 101, 51, 1) 5%,
+            rgba(98, 137, 203, 1) 100%
+        );
 
-  .theme--gradient {
-    background: HSL(140, 59%, 25%);
-    background: linear-gradient(205deg,rgba(26, 101, 51, 1) 5%, rgba(98, 137, 203, 1) 100%);
-
-    color: white;
-  }
-
-  .card {
-    @apply w-full h-fit rounded shadow-md p-4;
-
-    border-width: 1px;
-    border-style: solid;
-
-    // background: var(--color-elevated-1);
-    // border-color: var(--color-elevated-1);
-    // color: var(--color-foreground);
-  }
-
-  dialog {
-    @apply w-full h-fit rounded-lg shadow-md shadow-zinc-700 p-4;
-
-    background: var(--color-elevated-3);
-    color: var(--color-foreground);
-  }
-
-  table {
-    @apply border-collapse w-full;
-
-    td, tr {
-      @apply p-2 text-ellipsis;
-    }
-  }
-
-  .toggle-button {
-    border-width: 4px;
-    border-style: solid;
-    border-radius: 0.75rem;
-  
-    font-size: 1.25rem;
-    font-weight: bold;
-
-    background-color: var(--background);
-    border-color: var(--foreground);
-    color: var(--foreground);
-  }
-  
-  .cycle-btn {
-    @extend .toggle-button;
-  
-    --foreground: var(--color-illuminating-emerald-600);
-    --background: var(--color-illuminating-emerald-100);
-
-    @variant dark {
-      --background: var(--color-illuminating-emerald-100);
-      --foreground: var(--color-illuminating-emerald-600);
+        color: white;
     }
 
-    &:hover {
-      --background: var(--color-illuminating-emerald-300);
+    .card {
+        @apply w-full h-fit rounded shadow-md p-4;
 
-      @variant dark {
-        --background: var(--color-illuminating-emerald-200);
-      }
+        border-width: 1px;
+        border-style: solid;
+
+        // background: var(--color-elevated-1);
+        // border-color: var(--color-elevated-1);
+        // color: var(--color-foreground);
     }
-  }
-  
-  .bills-btn {
-    @extend .toggle-button;
-  
-    --foreground: var(--color-zinc-500);
-    --background: var(--color-zinc-100);
 
-    &:hover {
-      --background: var(--color-zinc-300);
+    dialog {
+        @apply w-full h-fit rounded-lg shadow-md shadow-zinc-700 p-4;
+
+        background: var(--color-elevated-3);
+        color: var(--color-foreground);
     }
-  }
-  
-  input[type="checkbox"]:checked + .cycle-btn {
-    background-color: var(--foreground);
-    color: white;
-  }
-  
-  input[type="checkbox"]:checked + .bills-btn {
-    background-color: var(--foreground);
-    color: white;
-  }
 
+    table {
+        @apply border-collapse w-full;
 
-  .test > p{
-    display: flex;
-    justify-content: space-between;
-  }
+        td,
+        tr {
+            @apply p-2 text-ellipsis;
+        }
+    }
+
+    .toggle-button {
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 0.75rem;
+
+        font-size: 1.25rem;
+        font-weight: bold;
+
+        background-color: var(--background);
+        border-color: var(--foreground);
+        color: var(--foreground);
+    }
+
+    .cycle-btn {
+        @extend .toggle-button;
+
+        --foreground: var(--color-illuminating-emerald-600);
+        --background: var(--color-illuminating-emerald-100);
+
+        @variant dark {
+            --background: var(--color-illuminating-emerald-100);
+            --foreground: var(--color-illuminating-emerald-600);
+        }
+
+        &:hover {
+            --background: var(--color-illuminating-emerald-300);
+
+            @variant dark {
+                --background: var(--color-illuminating-emerald-200);
+            }
+        }
+    }
+
+    .bills-btn {
+        @extend .toggle-button;
+
+        --foreground: var(--color-zinc-500);
+        --background: var(--color-zinc-100);
+
+        &:hover {
+            --background: var(--color-zinc-300);
+        }
+    }
+
+    input[type="checkbox"]:checked + .cycle-btn {
+        background-color: var(--foreground);
+        color: white;
+    }
+
+    input[type="checkbox"]:checked + .bills-btn {
+        background-color: var(--foreground);
+        color: white;
+    }
+
+    .test > p {
+        display: flex;
+        justify-content: space-between;
+    }
 }
