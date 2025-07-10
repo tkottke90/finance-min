@@ -1,0 +1,17 @@
+Below is context on the Category concept I am working to implement in the application.  Review the description of the Category concept.  Then we will discuss some specific implementation details in following messages.
+
+---
+
+Categories play a key role in this application.  This provides space for users to allocate funds they recieve to a specific purpose.
+
+When users look at a specific category, the will be asking the question: "can I afford to make this purchase".  For example, a user may allocate funds for eating at resturants.  Before deciding to go out to eat or order delivery, they consult their "Eating Out" category balance to see if they have enough funds to cover the cost.
+
+I have been using this system manually for a few years using a spreadsheet and found that one of the biggest challenges was handling when I overspent a specific category.  The system is not intended to inhibit the user from spending but instead identify when it happens.  To solve this problem I developed a few strategies to handle it.
+
+Firstly, always had a catch all category.  I do not believe I can anticipate how I will spend every dollar I earn and this category was created as a way for me to track those uncategorized expenses.  For the application we will want to implement the category system so that every user has a catch all category.  Importantly, this category should go negative for overspending.  The theory behind this is that when the next paycheck comes, the user will first have to pay off their own negative balance from this category before they can spend.  This helps modulate user's spending over time by leaving the user with less money if they overspend and more money if they underspend.  This is a key feature of the system.
+
+Secondly, some categories (such as Groceries, Gas, and Toiletries) are more generalized in nature but are generally pulled from for purchases that can vary.  These are similar to "Variable Expenses" from traditional budgeting systems.  These categories are designed to be flexable since the use of that category can differ from cycle to cycle.  For example, on vacation a user may not spend as much on groceries as they would at home.  This category should be designed to be flexible and allow for adjustments based on the user's spending habits.  In our system here the category would overflow when the user spends more than the allocated amount.  Instead of going negative, the negative balance is subtracted from a designated overflow category.  This behavior would continue until to overflow until additional funds are added to the category.
+
+After variable expenses we begin to look at expenses with fixed costs.  These are expenses that are generally the same from cycle to cycle.  For example, rent, utilities, and insurance are all fixed costs.  These categories are designed to be fixed and expect that the user will manually account for any changes or variance in the amount spent.  This can be done by either slightly over-allocating or adding additional funds during a new cycle after an overflow.  For this reason, these categories do not overflow so the user can see the negative balance and account for it.
+
+The final category type is long term goals.  These categories (like fixed costs categories) are designed to not overflow while also being like variable categories in that their use is not a set amount.  The user will have financial goals they wish to achieve.  This allows the user to accumulate funds over time rather than burdening themselves all at once.

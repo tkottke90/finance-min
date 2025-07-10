@@ -1,4 +1,14 @@
 -- CreateTable
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "uuid" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- CreateTable
 CREATE TABLE "Cycle" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
@@ -19,13 +29,13 @@ CREATE TABLE "Category" (
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "color" TEXT,
+    "type" TEXT NOT NULL,
     "balance" DECIMAL NOT NULL DEFAULT 0,
     "userId" TEXT NOT NULL,
-    "isOverflow" BOOLEAN NOT NULL DEFAULT false,
-    "isSubscription" BOOLEAN NOT NULL DEFAULT false,
-    "willOverflow" BOOLEAN NOT NULL DEFAULT false,
+    "overflowCategoryId" INTEGER,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "Category_overflowCategoryId_fkey" FOREIGN KEY ("overflowCategoryId") REFERENCES "Category" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT "Category_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("uuid") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -33,7 +43,6 @@ CREATE TABLE "Category" (
 CREATE TABLE "Transaction" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "amount" DECIMAL NOT NULL,
-    "date" DATETIME NOT NULL,
     "categoryId" INTEGER NOT NULL,
     "receiptId" INTEGER NOT NULL,
     "userId" TEXT NOT NULL,
@@ -70,3 +79,45 @@ CREATE TABLE "Receipt" (
     CONSTRAINT "Receipt_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("uuid") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Receipt_paymentMethodId_fkey" FOREIGN KEY ("paymentMethodId") REFERENCES "PaymentMethod" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_uuid_key" ON "User"("uuid");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE INDEX "User_uuid_idx" ON "User"("uuid");
+
+-- CreateIndex
+CREATE INDEX "Cycle_userId_idx" ON "Cycle"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Cycle_userid_year_index_unique" ON "Cycle"("userId", "year", "yearIndex");
+
+-- CreateIndex
+CREATE INDEX "Category_userId_idx" ON "Category"("userId");
+
+-- CreateIndex
+CREATE INDEX "Category_type_idx" ON "Category"("type");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_userId_type_unique" ON "Category"("userId", "type");
+
+-- CreateIndex
+CREATE INDEX "Transaction_categoryId_idx" ON "Transaction"("categoryId");
+
+-- CreateIndex
+CREATE INDEX "Transaction_userId_idx" ON "Transaction"("userId");
+
+-- CreateIndex
+CREATE INDEX "Transaction_receiptId_idx" ON "Transaction"("receiptId");
+
+-- CreateIndex
+CREATE INDEX "PaymentMethod_userId_idx" ON "PaymentMethod"("userId");
+
+-- CreateIndex
+CREATE INDEX "Receipt_userId_idx" ON "Receipt"("userId");
+
+-- CreateIndex
+CREATE INDEX "Receipt_paymentMethodId_idx" ON "Receipt"("paymentMethodId");
