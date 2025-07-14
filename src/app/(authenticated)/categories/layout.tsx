@@ -16,18 +16,7 @@ export default function CategoriesLayout({
     <div className="w-full h-full">
       <h2 className="text-3xl font-bold">Categories</h2>
       <br />
-
-      <table className="border-collapse max-w-3xl">
-        <thead className="border-b border-gray-400">
-          <tr>
-            <th>Name</th>
-            <th className="hidden sm:table-cell">Description</th>
-            <th>Balance</th>
-            <th className="hidden sm:table-cell">Last Used</th>
-          </tr>
-        </thead>
-        <tbody>{children}</tbody>
-      </table>
+      {children}
     </div>
   );
 }

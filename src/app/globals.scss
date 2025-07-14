@@ -211,8 +211,16 @@ body {
         color: white;
     }
 
-    .test > p {
-        display: flex;
-        justify-content: space-between;
-    }
+    /* .elevated-container {
+        @extend .card;
+        @apply grid grid-cols-[1fr_2.5fr];
+
+        &--primary {
+            @apply text-black bg-illuminating-emerald-200 border-illuminating-emerald-300 dark:bg-illuminating-emerald-600 dark:border-illuminating-emerald-500 dark:text-white;
+        }
+
+        &--secondary {
+            @apply;
+        }
+    } */
 }

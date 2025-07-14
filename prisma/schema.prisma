@@ -85,7 +85,6 @@ model Category {
   overflowFrom     Category[]    @relation("CategoryOverflow")
   transactions     Transaction[]
 
-  @@unique([userId, type], name: "uniqueCatchAllPerUser", map: "Category_userId_type_unique")
   @@index([userId])
   @@index([type])
 }

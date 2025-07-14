@@ -102,9 +102,6 @@ CREATE INDEX "Category_userId_idx" ON "Category"("userId");
 CREATE INDEX "Category_type_idx" ON "Category"("type");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Category_userId_type_unique" ON "Category"("userId", "type");
-
--- CreateIndex
 CREATE INDEX "Transaction_categoryId_idx" ON "Transaction"("categoryId");
 
 -- CreateIndex
