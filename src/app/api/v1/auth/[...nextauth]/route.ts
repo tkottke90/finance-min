@@ -33,6 +33,19 @@ export const authOptions: AuthOptions = {
           });
 
           console.log(`User created (sub: ${profile?.sub})`);
+
+          await prisma.category.create({
+            data: {
+              name: "Spending",
+              description:
+                "Final category for all uncategorized or overflowed expenses",
+              type: "CATCH_ALL",
+              balance: 0,
+              userId: profile?.sub,
+            },
+          });
+
+          console.log(`User created base category (sub: ${profile?.sub})`);
         }
       }
 

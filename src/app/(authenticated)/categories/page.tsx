@@ -1,5 +1,6 @@
 import { CategoryCard } from "./category-card";
 import { getCategories } from "@/app/dao/categories";
+import { CategoryTable } from "./cateogory-table";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();
@@ -12,8 +13,10 @@ export default async function CategoriesPage() {
 
   return (
     <>
-      {categories.length > 0 ? JSON.stringify(categories, null, 2) : "Empty"}
       {catchAllCategory && <CategoryCard category={catchAllCategory} />}
+      <CategoryTable
+        categories={categories.filter((cat) => cat.type !== "CATCH_ALL")}
+      />
     </>
   );
 }
