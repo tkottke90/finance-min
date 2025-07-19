@@ -10,7 +10,7 @@ const fontRoboto = Roboto({
 
 export const metadata: Metadata = {
   title: "Finance Minimum",
-  description: "Minimalistic finance app"
+  description: "Minimalistic finance app",
 };
 
 export default function RootLayout({
@@ -20,12 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${fontRoboto.variable} antialiased`}
-      >
-        <AuthGuard>
-          {children}
-        </AuthGuard>
+      <body className={`${fontRoboto.variable} antialiased`}>
+        <AuthGuard>{children}</AuthGuard>
       </body>
     </html>
   );

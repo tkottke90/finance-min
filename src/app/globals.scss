@@ -86,6 +86,8 @@
     --theme_warning_light: 41%;
     --theme_warning_hsl: hsl(0, 64%, 41%);
     --color-warning-500: #ab2626;
+
+    /* Animations */
 }
 
 html,
@@ -97,7 +99,7 @@ body {
 
 @layer base {
     body {
-        height: 100dvh;
+        height: 100%;
 
         font-family: Arial, Helvetica, sans-serif;
 
@@ -135,17 +137,46 @@ body {
 
         border-width: 1px;
         border-style: solid;
-
-        // background: var(--color-elevated-1);
-        // border-color: var(--color-elevated-1);
-        // color: var(--color-foreground);
     }
 
     dialog {
-        @apply w-full h-fit rounded-lg shadow-md shadow-zinc-700 p-4;
+        @apply shadow-md shadow-zinc-700 p-4;
 
         background: var(--color-elevated-3);
         color: var(--color-foreground);
+
+        &::backdrop {
+            @apply opacity-50 bg-zinc-800;
+        }
+
+        &.drawer {
+            position: fixed;
+            display: block;
+            height: 100%;
+            max-height: 100dvh;
+
+            margin: 0;
+            padding: 1rem;
+            overflow: auto;
+            transform: translateX(-100%);
+
+            --animation-timing: 250ms;
+            transition:
+                opacity var(--animation-timing) ease-out,
+                transform var(--animation-timing) ease-out,
+                overlay var(--animation-timing) ease-out allow-discrete,
+                display 100ms ease-out allow-discrete;
+
+            &.drawer--right {
+                inset: 0 0 0 auto;
+                transform: translateX(100%);
+            }
+
+            &[open] {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     }
 
     table {
@@ -210,17 +241,4 @@ body {
         background-color: var(--foreground);
         color: white;
     }
-
-    /* .elevated-container {
-        @extend .card;
-        @apply grid grid-cols-[1fr_2.5fr];
-
-        &--primary {
-            @apply text-black bg-illuminating-emerald-200 border-illuminating-emerald-300 dark:bg-illuminating-emerald-600 dark:border-illuminating-emerald-500 dark:text-white;
-        }
-
-        &--secondary {
-            @apply;
-        }
-    } */
 }

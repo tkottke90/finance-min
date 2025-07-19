@@ -2,6 +2,15 @@ import { CategoryCard } from "./category-card";
 import { getCategories } from "@/app/dao/categories";
 import { CategoryTable } from "./cateogory-table";
 
+const activeCycleColors = [
+  "text-black",
+  "bg-illuminating-emerald-200",
+  "border-illuminating-emerald-300",
+  "dark:bg-illuminating-emerald-600",
+  "dark:border-illuminating-emerald-500",
+  "dark:text-white",
+].join(" ");
+
 export default async function CategoriesPage() {
   const categories = await getCategories();
 
@@ -9,11 +18,14 @@ export default async function CategoriesPage() {
     (category) => category.type === "CATCH_ALL",
   );
 
-  console.dir(catchAllCategory);
-
   return (
     <>
-      {catchAllCategory && <CategoryCard category={catchAllCategory} />}
+      {catchAllCategory && (
+        <CategoryCard
+          className={activeCycleColors}
+          category={catchAllCategory}
+        />
+      )}
       <CategoryTable
         categories={categories.filter((cat) => cat.type !== "CATCH_ALL")}
       />

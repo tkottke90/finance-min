@@ -1,11 +1,7 @@
-const activeCycleColors = [
-  "text-black",
-  "bg-illuminating-emerald-200",
-  "border-illuminating-emerald-300",
-  "dark:bg-illuminating-emerald-600",
-  "dark:border-illuminating-emerald-500",
-  "dark:text-white",
-].join(" ");
+"use client";
+import { useState } from "react";
+import { AddCategory } from "./add-category";
+import { Category } from "@/lib/models/category";
 
 export default function CategoriesLayout({
   children,
@@ -14,9 +10,12 @@ export default function CategoriesLayout({
 }) {
   return (
     <div className="w-full h-full">
-      <h2 className="text-3xl font-bold">Categories</h2>
+      <header className="flex justify-between">
+        <h2 className="text-3xl font-bold">Categories</h2>
+        <AddCategory />
+      </header>
       <br />
-      {children}
+      <main className="max-w-[600px] m-auto">{children}</main>
     </div>
   );
 }

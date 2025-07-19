@@ -5,7 +5,7 @@ import { ZodPrisma } from "../utils/type.utils";
 type UserPrisma = ZodPrisma<Prisma__User>;
 
 export const UserSchema = z
-  .object<UserPrisma>({
+  .object({
     id: z.number(),
     name: z.string(),
     uuid: z.string().uuid(),

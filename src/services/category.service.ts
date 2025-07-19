@@ -8,3 +8,9 @@ export async function create(category: CreateCategory) {
     data: category,
   });
 }
+
+export async function getUserCategories(userId: string) {
+  return prisma.category.findMany({
+    where: { userId },
+  });
+}
