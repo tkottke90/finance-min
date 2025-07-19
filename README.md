@@ -1,8 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finance Min
+
+A minimal personal finance management application built with Next.js 15, designed to help users track expenses, manage budgets, and organize financial data through cycles and categories.
+
+## Overview
+
+Finance Min is a modern web application that provides a streamlined approach to personal financial management. The app organizes your finances into manageable "cycles" (time periods) and allows you to categorize expenses across different types of spending categories.
+
+### Key Features
+
+- **Cycle-based Management**: Organize your finances into time-based cycles for better focus and planning
+- **Smart Categories**: Create and manage different types of categories:
+  - **Variable**: Flexible spending categories that can overflow to other categories
+  - **Fixed**: Consistent expenses like rent and utilities
+  - **Goal**: Long-term savings objectives
+- **Transaction Tracking**: Record and categorize all your financial transactions
+- **Receipt Management**: Store and organize digital receipts
+- **Payment Methods**: Manage multiple payment sources
+- **User Authentication**: Secure login system with NextAuth.js
+- **Real-time Updates**: Modern React 19 features with Server Actions and `useActionState`
+
+### Tech Stack
+
+- **Frontend**: Next.js 15 with React 19 features
+- **Styling**: Tailwind CSS with SCSS
+- **Database**: SQLite with Prisma ORM
+- **Authentication**: NextAuth.js
+- **State Management**: Preact Signals
+- **UI Components**: Lucide React icons, custom drawer components
+- **Animations**: Motion library
+- **Type Safety**: TypeScript with Zod validation
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js (18+ recommended)
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Set up your environment variables (copy `.env.example` to `.env.local`)
+
+4. Set up the database:
+
+```bash
+npm run add:migrations
+```
+
+5. Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +72,76 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── (authenticated)/     # Protected routes
+│   │   ├── dashboard/       # Main dashboard
+│   │   ├── categories/      # Category management
+│   │   ├── cycles/          # Financial cycles
+│   │   ├── receipts/        # Receipt storage
+│   │   └── payment-methods/ # Payment method management
+│   ├── api/                 # API routes
+│   ├── dao/                 # Data access layer
+│   └── login/               # Authentication
+├── components/              # Reusable UI components
+├── lib/                     # Utilities and configurations
+└── services/                # Business logic services
+```
 
-## Learn More
+## Development
 
-To learn more about Next.js, take a look at the following resources:
+### Database Migrations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When you make changes to the Prisma schema:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run add:migrations
+```
 
-## Deploy on Vercel
+### Building for Production
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Linting
+
+```bash
+npm run lint
+```
+
+## Features in Detail
+
+### Categories
+- Create custom spending categories with color coding
+- Set up overflow relationships between categories
+- Track balances and spending patterns
+- Support for different category types (Variable, Fixed, Goal)
+
+### Cycles
+- Organize finances into manageable time periods
+- Track spending across different cycles
+- Focus on current financial management rather than historical data
+
+### Transactions
+- Record all financial transactions
+- Link transactions to categories and receipts
+- Track spending patterns over time
+
+### Authentication
+- Secure user authentication with NextAuth.js
+- User-specific data isolation
+- Account management functionality
+
+## Contributing
+
+This is a personal project, but contributions and suggestions are welcome. Please feel free to open issues or submit pull requests.
+
+## License
+
+This project is private and not currently licensed for public use.
