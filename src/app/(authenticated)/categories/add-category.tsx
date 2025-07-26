@@ -138,13 +138,14 @@ export function AddCategory({ existingCategories = [] }: AddCategoryProps) {
         <div className="form-field">
           <label htmlFor="balance">Initial Balance</label>
           <input
-            type="number"
+            type="text"
+            pattern="[0-9]*"
+            inputMode="numeric"
             id="balance"
             name="balance"
             className="form-input"
-            placeholder="0"
+            placeholder="$0.00"
             min="0"
-            step="0.01"
             defaultValue={formData?.formState?.balance ?? 0}
             disabled={isLoading}
             required

@@ -9,7 +9,7 @@ export function CategoryCard({
 }: CustomComponentProps<{ category: Category }>) {
   return (
     <div className={`card ${className}`}>
-      <h2>{category.name}</h2>
+      <h2 className="font-bold">{category.name}</h2>
     </div>
   );
 }

@@ -26,6 +26,7 @@ export default async function CategoriesPage() {
           category={catchAllCategory}
         />
       )}
+      <br />
       <CategoryTable
         categories={categories.filter((cat) => cat.type !== "CATCH_ALL")}
       />
